@@ -1,4 +1,5 @@
 const express = require('express')
+const socket = require('socket.io')
 
 // APP SETUP
 
@@ -9,3 +10,11 @@ const server = app.listen(4000, () => {
 })
 
 app.use(express.static('public'))
+
+// Socket setup
+
+const io = socket(server)
+
+io.on('connection', (socket) =>  {
+    console.log('Made socket connection', socket.id)
+})
